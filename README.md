@@ -1,7 +1,7 @@
 # cs260-startup
 Personal project for CS260
 
-Hello this is an edit from my local machine
+This is the most important line of code because it's from the local machine!
 
 And this is an edit from GitHub
 
