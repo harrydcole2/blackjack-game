@@ -1,15 +1,4 @@
 # cs260-startup
 Personal project for CS260
 
-test
-
-I guess we can compromise and leave this as an edit from the local machine
-
-And this is an edit from GitHub
-
-And another one
-
-
-After doing this little exercise with Github, I learned the mechanics of vs source control and Git Bash commands and where those overlapping functionalities correspond. I also learned how much of a headache it can be to merge changes of the same line.
-
-One more just to be certain...
+For our project, we are going to do a Blackjack simulator. Blackjack is one of the most popular betting games at the casino for the simple reason that it seems so easy to cheat. The point is for the players to reach 21 with a combination of cards dealt to them. We will simulate this game but with a little twist: Our blackjack simulator will be different however because it will cheat back, ensuring that the return on investment for the casino is greater. We hope to teach people the follies of gambling. In our game of blackjack the house always wins.
