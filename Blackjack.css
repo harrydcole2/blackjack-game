@@ -1,0 +1,83 @@
+body{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    height: 100vh;
+    background-color: #222;
+  }
+  h1 {
+    background-color: blue;
+    flex: 0 80px;
+  }
+  main{
+    text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: row
+  }
+  section:nth-child(1){
+    flex: 1;
+    background-color: white;
+  }
+  section:nth-child(2){
+    postion: relative;
+    flex: 5;
+  }
+  .table{
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 50%;
+    position: relative;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 0 0 50% 50%;
+    background-color: green;
+  }
+  .dealer-hand {
+    justify-content: center;
+    position: relative;
+    top: 5%;
+    display: flex;
+  }
+  
+  .player-hand {
+    justify-content: center;
+    position: relative;
+    top: 50%;
+    display: flex;
+  }
+  
+  .card {
+    width: 10%;
+    height: 50px;
+    background-color: white;
+    margin-right: 5px;
+  }
+  .hit-button{
+    position: flex;
+    margin-top: 5%;
+  }
+  .spot{
+    flex: 1;
+    position: relative;
+    display: block;
+    border: yellow solid .5vh;
+    width: 4vw;
+    height: 10vh;
+    top: 55%;
+    left: 46%;
+    z-value: 2;
+  }
+  @media (orientation: portrait){
+    main{
+      flex-direction: column;
+    }
+  }
+  
+  @media (max-height: 500px){
+    header{
+      display: none;
+    }
+  }
