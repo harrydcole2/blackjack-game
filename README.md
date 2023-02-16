@@ -6,3 +6,12 @@ For our project, we are going to create a Blackjack simulator. Blackjack is one 
 We're aren't the best artists, but here is a depiction of what the final product will look like. There will be a dealer and up to three players gathered around a table and dealt cards that will be handled for determining who wins and who loses.
 
 ![blackjackRough](blackjackRough.jpg)
+
+
+
+
+2/8/23 HTML Simon Project
+- Button elements can have SVG or IMG children, which gives the button an interesting design
+- tr and td elements are table row and column elements, which give more control when using tables
+- hr and br are useful tools for adding horizontal line divisions and line breaks respectively
+- Text spacing is based on width, not on line breaks in VS code
