@@ -1,19 +1,18 @@
 body{
     display: flex;
     flex-direction: column;
-    margin: 0;
-    height: 100vh;
-    background-color: #222;
   }
-  h1 {
-    background-color: blue;
+  
+  header{
     flex: 0 80px;
   }
+
   main{
-    text-align: center;
     flex: 1;
     display: flex;
-    flex-direction: row
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
   }
   section:nth-child(1){
     flex: 1;
