@@ -45,12 +45,13 @@ body{
   }
   section:nth-child(2){
     postion: relative;
+    width: 40vw;
     flex: 5;
   }
   .table{
     align-items: center;
     justify-content: center;
-    width: 50%;
+    width: 100%;
     height: 50%;
     position: relative;
     top: 25%;
