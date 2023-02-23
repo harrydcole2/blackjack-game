@@ -7,7 +7,7 @@ body{
     flex: 0 80px;
   }
 
-  main{
+  main {
     flex: 1 calc(100vh - 80px);
     display: flex;
     flex-direction: column;
@@ -31,9 +31,17 @@ body{
     padding-bottom: .5em;
   }
 
+  /* .play-layout {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .play-layout .collapse {
+    flex: 1;
+  } */
+
   section:nth-child(1){
     flex: 1;
-    background-color: white;
   }
   section:nth-child(2){
     postion: relative;
