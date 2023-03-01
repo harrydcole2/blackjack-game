@@ -101,20 +101,70 @@ function addPlayerCard(){
     }
     card.appendChild(firstCard);
     if(playerTotal() > 21){
-      stand();
+      lose();
     }
   }
   else{
-    stand();
+    win();
   }
 }
 
 function stand(){
   ifStand = true;
-  
-  while(dealerTotal < 16){
-    
+  determineWinnings();
+}
+
+function determineWinnings() {
+  while(dealerTotal() < 17) {
+    addDealerCard();
   }
+
+  if (playerTotal() >= dealerTotal() || dealerTotal() > 21) {
+    win();
+  }
+  else {
+    lose();
+  }
+}
+
+function win() {
+  setTimeout(() => {
+    alert("You win!");
+  }, 1000);
+}
+
+function lose() {
+  setTimeout(() => {
+    alert("You suck!");
+  }, 1000);
+}
+
+function addDealerCard() {
+  const newCard = document.createElement("div");
+  newCard.setAttribute("class", "card");
+  if(dealerHand.length === 2){
+    newCard.setAttribute("id", "dealerThirdCard");
+  }
+  else if(dealerHand.length === 3){
+    newCard.setAttribute("id", "dealerFourthCard");
+  }
+  else if(dealerHand.length === 4){
+    newCard.setAttribute("id", "dealerFifthCard");
+  }
+  const hand = document.getElementById("dealer-hand");
+  hand.appendChild(newCard);
+  dealerHand[dealerHand.length] = deck[topOfDeck];
+  topOfDeck++;
+
+  const cardText = document.createTextNode(dealerHand[dealerHand.length - 1].rank + " of " + dealerHand[dealerHand.length - 1].suit)
+  let card = document.getElementById("dealerThirdCard");
+  if(dealerHand.length === 4){
+    card = document.getElementById("dealerFourthCard");
+  }
+  if(dealerHand.length === 5){
+    card = document.getElementById("dealerFifthCard")
+  }
+  card.appendChild(cardText);
 }
 
 document.getElementById("hit-button").addEventListener('click', addPlayerCard);
