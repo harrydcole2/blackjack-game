@@ -100,9 +100,8 @@ function addPlayerCard(){
       card = document.getElementById("playerFifthCard")
     }
     card.appendChild(firstCard);
-    if(playerTotal() > 21){
-      lose();
-    }
+    if(playerTotal() > 21) lose();
+    else if(playerTotal() === 21) win();
   }
   else{
     win();
