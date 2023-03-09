@@ -6,9 +6,9 @@ let cardsInHand = 2;
 let ifStand = false;
 
 function createDeck() {
-  let suits = ["Hearts", "Diamonds", "Clubs", "Spades"];
-  let ranks = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"];
-  let values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+  let suits = ["\u2665", "\u2666", "\u2663", "\u2660"];
+  let ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+  let values = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
   for (let i = 0; i < suits.length; i++) {
     for (let j = 0; j < ranks.length; j++) {
       let card = {
@@ -40,16 +40,16 @@ function dealCards() {
 }
 
 function outputHands(){
-  let firstCard = document.createTextNode("Hidden Card \n" + dealerHand[0].rank + " of " + dealerHand[0].suit);
+  let firstCard = document.createTextNode(dealerHand[0].rank + dealerHand[0].suit);
   let card = document.getElementById("dealerFirstCard");
   card.appendChild(firstCard);
-  let secondCard = document.createTextNode(dealerHand[1].rank + " of " + dealerHand[1].suit);
+  let secondCard = document.createTextNode(dealerHand[1].rank + dealerHand[1].suit);
   card = document.getElementById("dealerSecondCard");
   card.appendChild(secondCard);
-  firstCard = document.createTextNode(playerHand[0].rank + " of " + playerHand[0].suit);
+  firstCard = document.createTextNode(playerHand[0].rank + playerHand[0].suit);
   card = document.getElementById("playerFirstCard");
   card.appendChild(firstCard);
-  firstCard = document.createTextNode(playerHand[1].rank + " of " + playerHand[1].suit);
+  firstCard = document.createTextNode(playerHand[1].rank + playerHand[1].suit);
   card = document.getElementById("playerSecondCard");
   card.appendChild(firstCard);
 }
@@ -91,7 +91,7 @@ function addPlayerCard(){
     console.log(dealerHand);
     console.log("Player's hand:");
     console.log(playerHand);
-    const firstCard = document.createTextNode(playerHand[playerHand.length - 1].rank + " of " + playerHand[playerHand.length - 1].suit)
+    const firstCard = document.createTextNode(playerHand[playerHand.length - 1].rank + playerHand[playerHand.length - 1].suit)
     let card = document.getElementById("playerThirdCard");
     if(playerHand.length === 4){
       card = document.getElementById("playerFourthCard");
@@ -100,11 +100,11 @@ function addPlayerCard(){
       card = document.getElementById("playerFifthCard")
     }
     card.appendChild(firstCard);
-    if(playerTotal() > 21) stand();
-    else if(playerTotal() === 21) stand();
+    if(playerTotal() > 21) lose();
+    else if(playerTotal() === 21) win();
   }
   else{
-    stand();
+    win();
   }
 }
 
@@ -114,20 +114,15 @@ function stand(){
 }
 
 function determineWinnings() {
-  if(playerTotal() > 21){
-    lose();
+  while(dealerTotal() < 17) {
+    addDealerCard();
   }
-  else{
-    while( dealerTotal() < 17) {
-      addDealerCard();
-    }
 
-    if ( playerTotal() >= dealerTotal() || dealerTotal() > 21) {
-      win();
-    }
-    else {
-      lose();
-    }
+  if (playerTotal() >= dealerTotal() || dealerTotal() > 21) {
+    win();
+  }
+  else {
+    lose();
   }
 }
 
@@ -160,7 +155,7 @@ function addDealerCard() {
   dealerHand[dealerHand.length] = deck[topOfDeck];
   topOfDeck++;
 
-  const cardText = document.createTextNode(dealerHand[dealerHand.length - 1].rank + " of " + dealerHand[dealerHand.length - 1].suit)
+  const cardText = document.createTextNode(dealerHand[dealerHand.length - 1].rank + dealerHand[dealerHand.length - 1].suit)
   let card = document.getElementById("dealerThirdCard");
   if(dealerHand.length === 4){
     card = document.getElementById("dealerFourthCard");
