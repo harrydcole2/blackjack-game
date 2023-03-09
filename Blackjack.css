@@ -1,10 +1,12 @@
 body{
+    background-color: #eae3c9;
     display: flex;
     flex-direction: column;
   }
   
   header{
     flex: 0 80px;
+    background-color: #7ed8ed;
   }
 
   main {
@@ -21,8 +23,8 @@ body{
     list-style: none;
   }
   .navbar-brand {
-    padding-left: 0.3em;
-    border-bottom: solid rgb(182,182,182) thin;
+    padding: 0.3em;
+    border-bottom: solid thin;
   }
   menu .nav-item {
     padding: 0 0.3em;
@@ -58,7 +60,7 @@ body{
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 0 0 50% 50%;
-    background-color: green;
+    background-color: rgb(92,162,76);
   }
   .dealer-hand {
     justify-content: center;

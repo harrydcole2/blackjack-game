@@ -100,11 +100,11 @@ function addPlayerCard(){
       card = document.getElementById("playerFifthCard")
     }
     card.appendChild(firstCard);
-    if(playerTotal() > 21) lose();
-    else if(playerTotal() === 21) win();
+    if(playerTotal() > 21) stand();
+    else if(playerTotal() === 21) stand();
   }
   else{
-    win();
+    stand();
   }
 }
 
@@ -114,15 +114,20 @@ function stand(){
 }
 
 function determineWinnings() {
-  while(dealerTotal() < 17) {
-    addDealerCard();
-  }
-
-  if (playerTotal() >= dealerTotal() || dealerTotal() > 21) {
-    win();
-  }
-  else {
+  if(playerTotal() > 21){
     lose();
+  }
+  else{
+    while( dealerTotal() < 17) {
+      addDealerCard();
+    }
+
+    if ( playerTotal() >= dealerTotal() || dealerTotal() > 21) {
+      win();
+    }
+    else {
+      lose();
+    }
   }
 }
 
