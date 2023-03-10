@@ -36,7 +36,7 @@
         <h3>Get as close to 21 as you can without going over. Some more rules here just so I get the general idea</h3>
       </h2>
     <div id="game">
-      <div class="table">
+      <div class="table" id="table">
         <div class="dealer-hand" id="dealer-hand">
           <div class="card" id="dealerFirstCard"> </div>
           <div class="card" id="dealerSecondCard"> </div>
@@ -48,6 +48,7 @@
       </div>
       <button class="hit-button" id="hit-button">Hit</button>
       <button class="stand-button" id="stand-button">Stand</button>
+      <button id="restart" onclick="restart()">New Game</button>
     </div>
   </main>
   <script src="blackjack.js"></script>

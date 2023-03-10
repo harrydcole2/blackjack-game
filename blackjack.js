@@ -108,6 +108,34 @@ function addPlayerCard(){
   }
 }
 
+function addDealerCard() {
+  const newCard = document.createElement("div");
+  newCard.setAttribute("class", "card");
+  if(dealerHand.length === 2){
+    newCard.setAttribute("id", "dealerThirdCard");
+  }
+  else if(dealerHand.length === 3){
+    newCard.setAttribute("id", "dealerFourthCard");
+  }
+  else if(dealerHand.length === 4){
+    newCard.setAttribute("id", "dealerFifthCard");
+  }
+  const hand = document.getElementById("dealer-hand");
+  hand.appendChild(newCard);
+  dealerHand[dealerHand.length] = deck[topOfDeck];
+  topOfDeck++;
+
+  const cardText = document.createTextNode(dealerHand[dealerHand.length - 1].rank + " of " + dealerHand[dealerHand.length - 1].suit)
+  let card = document.getElementById("dealerThirdCard");
+  if(dealerHand.length === 4){
+    card = document.getElementById("dealerFourthCard");
+  }
+  if(dealerHand.length === 5){
+    card = document.getElementById("dealerFifthCard")
+  }
+  card.appendChild(cardText);
+}
+
 function stand(){
   ifStand = true;
   determineWinnings();
@@ -143,32 +171,45 @@ function lose() {
   }, 1000);
 }
 
-function addDealerCard() {
-  const newCard = document.createElement("div");
-  newCard.setAttribute("class", "card");
-  if(dealerHand.length === 2){
-    newCard.setAttribute("id", "dealerThirdCard");
+function restart(){
+  if(ifStand){
+    shuffleDeck(deck);
+    dealCards();   
+    clearHand();
+    outputHands();
+    ifStand = false;
   }
-  else if(dealerHand.length === 3){
-    newCard.setAttribute("id", "dealerFourthCard");
-  }
-  else if(dealerHand.length === 4){
-    newCard.setAttribute("id", "dealerFifthCard");
-  }
-  const hand = document.getElementById("dealer-hand");
-  hand.appendChild(newCard);
-  dealerHand[dealerHand.length] = deck[topOfDeck];
-  topOfDeck++;
+}
 
-  const cardText = document.createTextNode(dealerHand[dealerHand.length - 1].rank + " of " + dealerHand[dealerHand.length - 1].suit)
-  let card = document.getElementById("dealerThirdCard");
-  if(dealerHand.length === 4){
-    card = document.getElementById("dealerFourthCard");
+function clearHand(){
+  const dealerHand = document.querySelector("#dealer-hand");
+  const playerHand = document.querySelector("#player-hand");
+  while(dealerHand.firstChild){
+    dealerHand.removeChild(dealerHand.firstChild);
   }
-  if(dealerHand.length === 5){
-    card = document.getElementById("dealerFifthCard")
+  while(playerHand.firstChild){
+    playerHand.removeChild(playerHand.firstChild);
   }
-  card.appendChild(cardText);
+  let newCard = document.createElement("div");
+  newCard.setAttribute("class", "card");
+  newCard.setAttribute("id", "dealerFirstCard");
+  dealerHand.appendChild(newCard);
+
+  newCard = document.createElement("div");
+  newCard.setAttribute("class", "card");
+  newCard.setAttribute("id", "dealerSecondCard");
+  dealerHand.appendChild(newCard);
+
+  newCard = document.createElement("div");
+  newCard.setAttribute("class", "card");
+  newCard.setAttribute("id", "playerFirstCard");
+  playerHand.appendChild(newCard);
+
+  newCard = document.createElement("div");
+  newCard.setAttribute("class", "card");
+  newCard.setAttribute("id", "playerSecondCard");
+  playerHand.appendChild(newCard);
+
 }
 
 document.getElementById("hit-button").addEventListener('click', addPlayerCard);
