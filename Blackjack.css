@@ -46,7 +46,7 @@ body{
     border-radius: 2px 2px 50% 50%;
     background-color: rgb(92,162,76);
     padding-top: 5%;
-    border: think solid !important;
+    border: thick solid !important;
     border-color: darkgreen !important;
   }
   .dealer-hand {

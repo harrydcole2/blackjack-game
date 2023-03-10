@@ -40,7 +40,7 @@ function dealCards() {
 }
 
 function outputHands(){
-  let firstCard = document.createTextNode(dealerHand[0].rank + dealerHand[0].suit);
+  let firstCard = document.createTextNode("?");
   let card = document.getElementById("dealerFirstCard");
   card.appendChild(firstCard);
   let secondCard = document.createTextNode(dealerHand[1].rank + dealerHand[1].suit);
@@ -137,6 +137,10 @@ function addDealerCard() {
 }
 
 function stand(){
+  if(ifStand === false) {
+    let first = document.querySelector("#dealerFirstCard");
+    first.innerHTML = dealerHand[1].rank + dealerHand[1].suit;
+  }
   ifStand = true;
   determineWinnings();
 }
@@ -215,7 +219,17 @@ function clearHand(){
 document.getElementById("hit-button").addEventListener('click', addPlayerCard);
 document.getElementById("stand-button").addEventListener('click', stand);
 
+function setUsername() {
+  const playerNameEl = document.querySelector('.player-name');
+  playerNameEl.textContent = this.getPlayerName();
+}
+
+function getPlayerName() {
+  return localStorage.getItem('userName') ?? 'Mystery player';
+}
+
 createDeck();
 shuffleDeck(deck);
 dealCards();
 outputHands();
+setUsername();

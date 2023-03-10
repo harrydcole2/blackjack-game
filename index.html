@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href= "Blackjack.css" />
+    <script src="login.js"></script>
     <title>Blackjack</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
@@ -33,14 +34,14 @@
       <div>
         <h1>Welcome to our blackjack simulator</h1>
         <p>Please click the buttons below to start</p>
-        <form method="get" action="play.html">
+        <form method="get" action="Blackjack.html">
           <div> 
           <input type="text" id="name" placeholder="Your name here" />
           </div>
           <div>
           <input type="password" id="password" placeholder="********"/>
           </div>
-          <button type="submit" class="btn btn-primary">Login</button>
+          <button type="submit" class="btn btn-primary" onclick="login()">Login</button>
         </form>
       </div>
     </main>
