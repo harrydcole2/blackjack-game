@@ -6,9 +6,9 @@ let cardsInHand = 2;
 let ifStand = false;
 
 function createDeck() {
-  let suits = ["Hearts", "Diamonds", "Clubs", "Spades"];
-  let ranks = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"];
-  let values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+  let suits = ["\u2665", "\u2666", "\u2663", "\u2660"];
+  let ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+  let values = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
   for (let i = 0; i < suits.length; i++) {
     for (let j = 0; j < ranks.length; j++) {
       let card = {
@@ -40,16 +40,16 @@ function dealCards() {
 }
 
 function outputHands(){
-  let firstCard = document.createTextNode("Hidden Card \n" + dealerHand[0].rank + " of " + dealerHand[0].suit);
+  let firstCard = document.createTextNode(dealerHand[0].rank + dealerHand[0].suit);
   let card = document.getElementById("dealerFirstCard");
   card.appendChild(firstCard);
-  let secondCard = document.createTextNode(dealerHand[1].rank + " of " + dealerHand[1].suit);
+  let secondCard = document.createTextNode(dealerHand[1].rank + dealerHand[1].suit);
   card = document.getElementById("dealerSecondCard");
   card.appendChild(secondCard);
-  firstCard = document.createTextNode(playerHand[0].rank + " of " + playerHand[0].suit);
+  firstCard = document.createTextNode(playerHand[0].rank + playerHand[0].suit);
   card = document.getElementById("playerFirstCard");
   card.appendChild(firstCard);
-  firstCard = document.createTextNode(playerHand[1].rank + " of " + playerHand[1].suit);
+  firstCard = document.createTextNode(playerHand[1].rank + playerHand[1].suit);
   card = document.getElementById("playerSecondCard");
   card.appendChild(firstCard);
 }
@@ -91,7 +91,7 @@ function addPlayerCard(){
     console.log(dealerHand);
     console.log("Player's hand:");
     console.log(playerHand);
-    const firstCard = document.createTextNode(playerHand[playerHand.length - 1].rank + " of " + playerHand[playerHand.length - 1].suit)
+    const firstCard = document.createTextNode(playerHand[playerHand.length - 1].rank + playerHand[playerHand.length - 1].suit)
     let card = document.getElementById("playerThirdCard");
     if(playerHand.length === 4){
       card = document.getElementById("playerFourthCard");
@@ -179,37 +179,22 @@ function restart(){
     outputHands();
     ifStand = false;
   }
-}
-
-function clearHand(){
-  const dealerHand = document.querySelector("#dealer-hand");
-  const playerHand = document.querySelector("#player-hand");
-  while(dealerHand.firstChild){
-    dealerHand.removeChild(dealerHand.firstChild);
+  else if(dealerHand.length === 4){
+    newCard.setAttribute("id", "dealerFifthCard");
   }
-  while(playerHand.firstChild){
-    playerHand.removeChild(playerHand.firstChild);
+  const hand = document.getElementById("dealer-hand");
+  hand.appendChild(newCard);
+  dealerHand[dealerHand.length] = deck[topOfDeck];
+  topOfDeck++;
+
+  const cardText = document.createTextNode(dealerHand[dealerHand.length - 1].rank + " of " + dealerHand[dealerHand.length - 1].suit)
+  let card = document.getElementById("dealerThirdCard");
+  if(dealerHand.length === 4){
+    card = document.getElementById("dealerFourthCard");
   }
-  let newCard = document.createElement("div");
-  newCard.setAttribute("class", "card");
-  newCard.setAttribute("id", "dealerFirstCard");
-  dealerHand.appendChild(newCard);
-
-  newCard = document.createElement("div");
-  newCard.setAttribute("class", "card");
-  newCard.setAttribute("id", "dealerSecondCard");
-  dealerHand.appendChild(newCard);
-
-  newCard = document.createElement("div");
-  newCard.setAttribute("class", "card");
-  newCard.setAttribute("id", "playerFirstCard");
-  playerHand.appendChild(newCard);
-
-  newCard = document.createElement("div");
-  newCard.setAttribute("class", "card");
-  newCard.setAttribute("id", "playerSecondCard");
-  playerHand.appendChild(newCard);
-
+  if(dealerHand.length === 5){
+    card = document.getElementById("dealerFifthCard")
+  }
 }
 
 document.getElementById("hit-button").addEventListener('click', addPlayerCard);
