@@ -125,7 +125,7 @@ function addDealerCard() {
   dealerHand[dealerHand.length] = deck[topOfDeck];
   topOfDeck++;
 
-  const cardText = document.createTextNode(dealerHand[dealerHand.length - 1].rank + " of " + dealerHand[dealerHand.length - 1].suit)
+  const cardText = document.createTextNode(dealerHand[dealerHand.length - 1].rank + dealerHand[dealerHand.length - 1].suit)
   let card = document.getElementById("dealerThirdCard");
   if(dealerHand.length === 4){
     card = document.getElementById("dealerFourthCard");
@@ -179,22 +179,37 @@ function restart(){
     outputHands();
     ifStand = false;
   }
-  else if(dealerHand.length === 4){
-    newCard.setAttribute("id", "dealerFifthCard");
-  }
-  const hand = document.getElementById("dealer-hand");
-  hand.appendChild(newCard);
-  dealerHand[dealerHand.length] = deck[topOfDeck];
-  topOfDeck++;
+}
 
-  const cardText = document.createTextNode(dealerHand[dealerHand.length - 1].rank + " of " + dealerHand[dealerHand.length - 1].suit)
-  let card = document.getElementById("dealerThirdCard");
-  if(dealerHand.length === 4){
-    card = document.getElementById("dealerFourthCard");
+function clearHand(){
+  const dealerHand = document.querySelector("#dealer-hand")
+  const playerHand = document.querySelector("#player-hand")
+
+  while(dealerHand.firstChild){
+    dealerHand.removeChild(dealerHand.firstChild);
   }
-  if(dealerHand.length === 5){
-    card = document.getElementById("dealerFifthCard")
+  while(playerHand.firstChild){
+    playerHand.removeChild(playerHand.firstChild);
   }
+
+  let newCard = document.createElement("div");
+  newCard.setAttribute("class", "card");
+  newCard.setAttribute("id", "dealerFirstCard");
+  dealerHand.appendChild(newCard);
+  newCard = document.createElement("div");
+  newCard.setAttribute("class", "card");
+  newCard.setAttribute("id", "dealerSecondCard");
+  dealerHand.appendChild(newCard);
+
+  newCard = document.createElement("div");
+  newCard.setAttribute("class", "card");
+  newCard.setAttribute("id", "playerFirstCard");
+  playerHand.appendChild(newCard);
+  newCard = document.createElement("div");
+  newCard.setAttribute("class", "card");
+  newCard.setAttribute("id", "playerSecondCard");
+  playerHand.appendChild(newCard);
+
 }
 
 document.getElementById("hit-button").addEventListener('click', addPlayerCard);
