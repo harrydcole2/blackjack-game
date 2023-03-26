@@ -54,6 +54,16 @@ function outputHands(){
   card.appendChild(firstCard);
 }
 
+function checkAce(){
+  for(let i = 0; i < playerHand.length; i++){
+    if(playerHand[i].value === 11){
+      playerHand[i].value = 1;
+      return false;
+    }
+  }
+  return true;
+}
+
 function playerTotal(){
   let temp = 0;
   for(let i = 0; i < playerHand.length; i++){
@@ -100,8 +110,14 @@ function addPlayerCard(){
       card = document.getElementById("playerFifthCard")
     }
     card.appendChild(firstCard);
-    if(playerTotal() > 21) stand();
-    else if(playerTotal() === 21) stand();
+    if(playerTotal() > 21) {
+      if(checkAce()){
+       stand();
+      }
+    }
+    else if(playerTotal() === 21){
+      stand();
+    }
   }
   else{
     stand();
@@ -139,7 +155,7 @@ function addDealerCard() {
 function stand(){
   if(ifStand === false) {
     let first = document.querySelector("#dealerFirstCard");
-    first.innerHTML = dealerHand[1].rank + dealerHand[1].suit;
+    first.innerHTML = dealerHand[0].rank + dealerHand[0].suit;
   }
   ifStand = true;
   determineWinnings();
