@@ -1,3 +1,7 @@
+// Event messages
+const Win = 'gameWin';
+const Lose = 'gameLose';
+const Tie = 'gameTie';
 class Deck {
   deck = [];
 
@@ -44,6 +48,8 @@ class Game {
     this.setUsername();
     this.getBalance();
     this.getBet();
+
+    this.configureWebSocket();
   }
 
   play(){
@@ -249,7 +255,10 @@ class Game {
   }
 
   async tie() {
-    alert("It's A Tie!")
+    alert("It's A Tie!");
+
+    //const username = this.getPlayerName();
+    this.broadcastEvent(username, Tie);
   }
   
   async win() {
@@ -270,6 +279,7 @@ class Game {
         localStorage.setItem('balance', this.balance);
         const currBalance = document.querySelector("#curr-balance");
         currBalance.innerHTML = (this.balance);
+        this.broadcastEvent(username, Win, this.bet);
       }
     }
     catch(e){
@@ -296,6 +306,7 @@ class Game {
         localStorage.setItem('balance', this.balance);
         const currBalance = document.querySelector("#curr-balance");
         currBalance.innerHTML = (this.balance);
+        this.broadcastEvent(username, Lose, this.bet);
       }
     }
     catch(e){
@@ -415,6 +426,43 @@ class Game {
   }
   hide(){
     document.querySelector('#popDiv').style.display = 'none';
+  }
+
+  //WebSockets configurations
+  configureWebSocket() {
+    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+    this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
+    this.socket.onopen = (event) => {
+      this.displayMsg('system', 'game', 'connected');
+    };
+    this.socket.onclose = (event) => {
+      this.displayMsg('system', 'game', 'disconnected');
+    };
+    this.socket.onmessage = async (event) => {
+      const msg = JSON.parse(await event.data.text());
+      if (msg.type === Win) {
+        this.displayMsg('player', msg.from, `won ${msg.value} points`);
+      } else if (msg.type === Lose) {
+        this.displayMsg('player', msg.from, `lost ${msg.value} points`);
+      } else if (msg.type === Tie) {
+        this.displayMsg('player', msg.from, `tied`);
+      }
+    };
+  }
+
+  displayMsg(cls, from, msg) {
+    const chatText = document.querySelector('#player-messages');
+    chatText.innerHTML =
+      `<div class="event"><span class="${cls}-event">${from}</span> ${msg}</div>` + chatText.innerHTML;
+  }
+
+  broadcastEvent(from, type, value) {
+    const event = {
+      from: from,
+      type: type,
+      value: value,
+    };
+    this.socket.send(JSON.stringify(event));
   }
 }
 
