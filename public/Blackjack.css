@@ -15,7 +15,7 @@ body{
     list-style: none;
   }
   .navbar-brand {
-    padding: 0.3em;
+    margin: 0.3em;
     border-bottom: solid thin;
   }
   menu .nav-item {
@@ -40,7 +40,7 @@ body{
     justify-content: center;
   }
 
-  .table{
+  #table{
     height: 80%;
     align-items: center;
     border-radius: 2px 2px 50% 50%;
@@ -69,9 +69,35 @@ body{
     border-color: black !important;
     font-size: 3.5em;
   }
-  .hit-button{
-    position: flex;
-    margin-top: 5%;
+  #button-div {
+    margin: 1%;
+  }
+  
+  #player-name {
+    margin: 0.3em;
+    margin-right: 20px;
+  }
+  #popDiv{
+    z-index: 999;
+    height: 100%;
+    width: 100%;
+    top:0;
+    left:0;
+    display: none;
+    position: absolute;
+    background-color:rgb(128, 128, 128, 0.7);
+    justify-content: center;
+  }
+  #bet-getter{
+    background-color: rgb(128, 128, 128, 1);
+    width:auto;
+    position: relative;
+    font-weight: bolder;
+    display: inline-block;
+    top:45%;
+  }
+  #bet-getter .popup{
+    margin: 3%;
   }
 
   @media (orientation: portrait){
