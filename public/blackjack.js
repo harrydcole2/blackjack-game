@@ -139,7 +139,7 @@ class Game {
          this.stand();
         }
       }
-      else if(this.playerTotal() === 21){
+      if(this.playerTotal() === 21){
         this.stand();
       }
       if(this.playerTotal < 21 && this.playerHand.length === 5){
