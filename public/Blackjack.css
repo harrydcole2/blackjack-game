@@ -99,6 +99,11 @@ body{
   #bet-getter .popup{
     margin: 3%;
   }
+  #players{
+    position: absolute;
+    left: 10px;
+    top: 100px;
+  }
 
   @media (orientation: portrait){
     main{

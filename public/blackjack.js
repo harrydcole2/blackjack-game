@@ -232,6 +232,9 @@ class Game {
       this.lose();
     }
     else{
+      if(this.dealerTotal() > 21) {
+        this.checkAce(this.dealerHand);
+      }
       while(this.dealerTotal() < 17) {
         this.addDealerCard();
         if(this.dealerTotal() > 21){
