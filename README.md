@@ -22,3 +22,20 @@ We're aren't the best artists, but here is a depiction of what the final product
 - this keyword returns the actual item, which in Simon tends to be an element of the DOM to manipulate
 - await keyword which delays something before running it
 - JSON is an important way to store data in local storage but removes functions
+
+3/25/23 Simon DB
+- Environment variables must be changed in the development and production environment. Use sudo in production, and advanced setting in windows
+- Various databases exist online that can be used for a website, tailored to different needs
+- All databases support a kind of object based querires. In Mongo they are of the form database.collection.find(*regex or other method*)
+- export in js signifies a public function required elsewhere
+- We must get and update database data asyncronously
+
+3/27/23 Simon Login
+- A login takes an email, password, and other necessary information and returns a cookie with an authorization token
+- Different endpoints for different HTTP requests to do different authentication functions
+- We must encrypt whatever passwords of users we have using a package like bcrypt
+
+3/29/23 Simon WebSocket
+- For communication to happen between users, websockets can allot a server for multiple users to communicate with (an upgraded http connection of sorts)
+- ping/pong every once and awhile to see if a connection is still alive
+- in messaging, WebSockets can use connection, message, and close pattern to forward messages appropriately: connection adds to list of connections where messages are forwarded until closed
