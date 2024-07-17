@@ -5,6 +5,8 @@ For our project, we are going to create a Blackjack simulator. Blackjack is one 
 
 We're aren't the best artists, but here is a depiction of what the final product will look like. There will be a dealer and up to three players gathered around a table and dealt cards that will be handled for determining who wins and who loses.
 
+This site has since been published here: [startup.harrisondcole.click](startup.harrisondcole.click)
+
 ![blackjackRough](blackjackRough.jpg)
 
 
